@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gcd"
+        android:text="GCD Calculator"
+        android:textSize="40dp"
+        android:background="@color/purple_500"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/firstLayout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="50dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/gcd"
+        android:layout_marginTop="100dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/ic_launcher_foreground"
+        >
+
+        <TextView
+        android:id="@+id/fisrtNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Input first number:"
+        android:autoSizeTextType="uniform"
+        android:textSize="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/txFisrtNum"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txFisrtNum"
+        android:inputType="number"
+        app:layout_constraintTop_toTopOf="@id/fisrtNum"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:width="300dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/secondNum"
+        />
+
+
+    <TextView
+        android:id="@+id/secondNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Input second number:"
+        android:autoSizeTextType="uniform"
+        android:textSize="20dp"
+        android:layout_marginTop="70dp"
+        app:layout_constraintTop_toTopOf="@id/txFisrtNum"
+        app:layout_constraintLeft_toLeftOf="@id/txFisrtNum"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txSecondNum"
+        android:inputType="number"
+        app:layout_constraintTop_toTopOf="@id/secondNum"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:width="300dp"
+        android:layout_marginTop="50dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSubmit"
+        android:width="200dp"
+        app:layout_constraintTop_toTopOf="@id/txSecondNum"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="100dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Res"
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

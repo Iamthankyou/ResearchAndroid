@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".Item">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+    <ListView
+        android:id="@+id/listItem"
+        android:layout_width="450dp"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        android:background="#03A9F4" />
 </FrameLayout>

@@ -13,12 +13,15 @@ public class MainActivity extends AppCompatActivity implements Item.ItemSelected
     private TextView tvDescription;
     private ArrayList<String> descriptions;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        tvDescription = findViewById(R.id.tvDescription);
+        tvDescription = findViewById(R.id.textView);
+
+        descriptions = new ArrayList<>();
 
         descriptions.add("Line 1");
         descriptions.add("Line 2");

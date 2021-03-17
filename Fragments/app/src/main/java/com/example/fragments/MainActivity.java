@@ -1,6 +1,7 @@
 package com.example.fragments;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements Item.ItemSelected {
 
     private TextView tvDescription;
-    private ArrayList<String> descriptions;
+    private String [] descriptions;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -21,16 +22,58 @@ public class MainActivity extends AppCompatActivity implements Item.ItemSelected
 
         tvDescription = findViewById(R.id.textView);
 
-        descriptions = new ArrayList<>();
+        descriptions = getResources().getStringArray(R.array.descriptions);
 
-        descriptions.add("Line 1");
-        descriptions.add("Line 2");
-        descriptions.add("Line 3");
+        if (findViewById(R.id.layout_portrait) != null){
+            FragmentManager fragmentManager = this.getSupportFragmentManager();
 
+            fragmentManager.beginTransaction()
+                    .show(fragmentManager.findFragmentById(R.id.item))
+                    .hide(fragmentManager.findFragmentById(R.id.detail))
+                    .commit();
+        }
+
+        if (findViewById(R.id.layout_land) != null){
+            FragmentManager fragmentManager = this.getSupportFragmentManager();
+
+            fragmentManager.beginTransaction()
+                    .show(fragmentManager.findFragmentById(R.id.item))
+                    .show(fragmentManager.findFragmentById(R.id.detail))
+                    .commit();
+        }
     }
 
     @Override
     public void onItemSelected(int id) {
-        tvDescription.setText(descriptions.get(id));
+        tvDescription.setText(descriptions[id]);
+
+        if (findViewById(R.id.layout_land) != null){
+            tvDescription.setText(descriptions[0]);
+        }
+
+        if (findViewById(R.id.layout_portrait) != null){
+            FragmentManager fragmentManager = this.getSupportFragmentManager();
+
+            fragmentManager.beginTransaction()
+                        .show(fragmentManager.findFragmentById(R.id.detail))
+                        .hide(fragmentManager.findFragmentById(R.id.item))
+                        .addToBackStack(null)
+                        .commit();
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

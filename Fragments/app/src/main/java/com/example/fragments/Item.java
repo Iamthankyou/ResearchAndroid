@@ -37,10 +37,7 @@ public class Item extends ListFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ArrayList<String> data = new ArrayList<>();
-        data.add("This is item 1");
-        data.add("This is item 2");
-        data.add("This is item 3");
+        String[] data = getResources().getStringArray(R.array.pieces);
 
         setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,data));
     }

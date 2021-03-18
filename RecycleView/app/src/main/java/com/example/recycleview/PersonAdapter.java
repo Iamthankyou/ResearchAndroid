@@ -16,9 +16,15 @@ import java.util.zip.Inflater;
 public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder> {
 
     private ArrayList<Person> listPerson;
+   private ItemClicked activity;
 
     public PersonAdapter(Context context, ArrayList<Person> listPerson) {
         this.listPerson = listPerson;
+        activity = (ItemClicked) context;
+    }
+
+    public interface ItemClicked{
+        void onItemClick(int position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -31,6 +37,13 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
             imgView = itemView.findViewById(R.id.imgView);
             tvName = itemView.findViewById(R.id.tvName);
             tvYear = itemView.findViewById(R.id.tvYear);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    activity.onItemClick(listPerson.indexOf((Person)v.getTag()));
+                }
+            });
         }
     }
 

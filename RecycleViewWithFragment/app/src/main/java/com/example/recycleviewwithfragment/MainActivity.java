@@ -1,6 +1,7 @@
 package com.example.recycleviewwithfragment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
@@ -13,7 +14,8 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Cli
 
     private EditText etName,etPhone;
     private TextView tvName,tvPhone;
-    private Button btnAdd;
+    private Button btnAdd,btnFragAdd,btnFragShow;
+    private Fragment detailFragment, buttonFrag, addFrag;
     private ItemFragment itemFragment;
     private FragmentManager fragmentManager;
 
@@ -27,9 +29,14 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Cli
         tvName  = (TextView) findViewById(R.id.tvName);
         tvPhone  = (TextView) findViewById(R.id.tvPhone);
         btnAdd = (Button) findViewById(R.id.btnAdd);
+        btnFragAdd = (Button) findViewById(R.id.btnFragAdd);
+        btnFragShow = (Button) findViewById(R.id.btnFragShow);
 
         fragmentManager = this.getSupportFragmentManager();
         itemFragment = (ItemFragment) fragmentManager.findFragmentById(R.id.itemFragment);
+        detailFragment = (DetailFragment) fragmentManager.findFragmentById(R.id.detailFragment);
+        buttonFrag = (FragmentButton) fragmentManager.findFragmentById(R.id.fragButton);
+        addFrag = (AddPersonFragment) fragmentManager.findFragmentById(R.id.addPersonFragment);
 
         btnAdd.setOnClickListener(v -> {
             if (etName.getText().toString().isEmpty() || etPhone.getText().toString().isEmpty()){
@@ -43,6 +50,31 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Cli
 
                 itemFragment.setChangeNotify();
             }
+        });
+
+        fragmentManager.beginTransaction()
+                .show(buttonFrag)
+                .show(addFrag)
+                .show(itemFragment)
+                .hide(detailFragment)
+                .commit();
+
+        btnFragAdd.setOnClickListener(v ->{
+            fragmentManager.beginTransaction()
+                .show(buttonFrag)
+                .show(addFrag)
+                .show(itemFragment)
+                .hide(detailFragment)
+                .commit();
+        });
+
+        btnFragShow.setOnClickListener(v->{
+            fragmentManager.beginTransaction()
+                    .show(buttonFrag)
+                    .hide(addFrag)
+                    .show(itemFragment)
+                    .show(detailFragment)
+                    .commit();
         });
 
     }

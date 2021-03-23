@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,8 @@ public class List extends Fragment {
     RecyclerView.Adapter myAdapter;
     RecyclerView.LayoutManager layoutManager;
     View view;
+
+    SearchView searchView;
 
     public List() {
         // Required empty public constructor
@@ -47,7 +50,14 @@ public class List extends Fragment {
     }
 
     public void setChangeNotify(){
+//        myAdapter.notifyAll();
         myAdapter.notifyDataSetChanged();
+    }
+
+    public void setChangeUpdate(){
+        myAdapter = new StudentAdapter(this.getActivity(),Application.listStudent);
+        recyclerView.setAdapter(myAdapter);
+
     }
 
 }

@@ -1,64 +1,45 @@
 package com.example.exam;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
+public class AddPerson extends AppCompatActivity {
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddPerson#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class AddPerson extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public AddPerson() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddPerson.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddPerson newInstance(String param1, String param2) {
-        AddPerson fragment = new AddPerson();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private Button btnAdd;
+    private EditText etName,etClass,etId,etBirthday;
+    private List listFragment;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+        setContentView(R.layout.activity_add_person);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_person, container, false);
+        btnAdd = (Button) findViewById(R.id.btnAdd);
+        etName = (EditText) findViewById(R.id.etAddName);
+        etClass = (EditText) findViewById(R.id.etAddClass);
+        etId = (EditText) findViewById(R.id.etAddId);
+        etBirthday = (EditText) findViewById(R.id.etAddBirthday);
+
+        btnAdd.setOnClickListener(e->{
+            if (etName.getText().toString().isEmpty() || etClass.getText().toString().isEmpty() || etId.getText().toString().isEmpty() || etBirthday.getText().toString().isEmpty()){
+                Toast.makeText(this,"Vui lòng điền tất cả thông tin",Toast.LENGTH_SHORT).show();
+            }
+            else{
+
+                MyDbHelper db = new MyDbHelper(this);
+                db.addStudent(new Student("null",etName.getText().toString(),etClass.getText().toString(),etId.getText().toString(),etBirthday.getText().toString()));
+
+                listFragment.setChangeNotify();
+                Toast.makeText(this, "DONE", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this,MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 }

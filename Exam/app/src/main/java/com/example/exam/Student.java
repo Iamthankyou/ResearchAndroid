@@ -2,6 +2,7 @@ package com.example.exam;
 
 public class Student {
     private String urlAvatar,name,nameClass,id,birthday;
+    private boolean isSelected;
 
     public Student(String urlAvatar, String name, String nameClass, String id, String birthday) {
         this.urlAvatar = urlAvatar;
@@ -49,5 +50,13 @@ public class Student {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

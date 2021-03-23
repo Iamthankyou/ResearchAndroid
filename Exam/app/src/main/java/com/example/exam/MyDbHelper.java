@@ -62,8 +62,11 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
         if(cursor != null)
             cursor.moveToFirst();
+        else{
+            return null;
+        }
 
-        Student student = new Student(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3),cursor.getString(4));
+        Student student = new Student(cursor.getString(1), cursor.getString(0));
         return student;
     }
 
@@ -76,7 +79,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
 
         while(cursor.isAfterLast() == false) {
-            Student student = new Student(cursor.getString(3), cursor.getString(1), cursor.getString(2), cursor.getString(0),cursor.getString(4));
+            Student student = new Student(cursor.getString(1), cursor.getString(0));
             studentList.add(student);
             cursor.moveToNext();
         }

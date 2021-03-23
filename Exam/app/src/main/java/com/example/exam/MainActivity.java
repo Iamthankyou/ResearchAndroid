@@ -1,9 +1,11 @@
 package com.example.exam;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -16,7 +18,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements StudentAdapter.ClickListener {
 
-    private EditText etDetailName,etDetailId,etDetailBirthday,etDetailClass;
+    private EditText etDetailName,etDetailId;
     private CircleImageView imgAvatar;
     private Fragment detailFragment,taskbarFragment,addFragment;
     private List listFragment;
@@ -30,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.Cl
 
         etDetailName = (EditText) findViewById(R.id.etAddName);
         etDetailId = (EditText) findViewById(R.id.etAddId);
-        etDetailBirthday = (EditText) findViewById(R.id.etAddBirthday);
-        etDetailClass = (EditText) findViewById(R.id.etAddClass);
         btnUpdate = (Button) findViewById(R.id.btnAdd);
         btnDelete = (Button) findViewById(R.id.btnDelete);
         imgAvatar = (CircleImageView) findViewById(R.id.ivAddAvatar);
@@ -51,27 +51,43 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.Cl
                 .commit();
 
         btnHomeDelete.setOnClickListener(v->{
-            LinkedList<Student> toRemove = new LinkedList<>();
 
-            Toast.makeText(this,"?????",Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle("HI");
+            alert.setMessage("Xóa tất cả mục đã chọn ?");
+            alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
-            for (Student i: Application.listStudent){
-                if (i.isSelected()){
-                    toRemove.add(i);
+                public void onClick(DialogInterface dialog, int which) {
+
+                    LinkedList<Student> toRemove = new LinkedList<>();
+
+                    for (Student i: Application.listStudent){
+                        if (i.isSelected()){
+                            toRemove.add(i);
+                        }
+                    }
+
+                    MyDbHelper db = new MyDbHelper(MainActivity.this );
+
+                    for (Student i:toRemove){
+                        db.deleteStudent(i.getId());
+                    }
+
+                    if (toRemove.size()>0){
+                        Application.listStudent.removeAll(toRemove);
+                    }
+                    listFragment.setChangeNotify();
+
                 }
-            }
-
-            MyDbHelper db = new MyDbHelper(this);
-
-            for (Student i:toRemove){
-                db.deleteStudent(i.getId());
-            }
-
-            if (toRemove.size()>0){
-                Application.listStudent.removeAll(toRemove);
-            }
-            listFragment.setChangeNotify();
-
+            });
+            alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // close dialog
+                    dialog.cancel();
+                }
+            });
+            alert.show();
+//            AlertDialog.
         });
 
         btnHomeAdd.setOnClickListener(v->{
@@ -80,14 +96,14 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.Cl
         });
 
         btnUpdate.setOnClickListener(e-> {
-            if (etDetailName.getText().toString().isEmpty() || etDetailClass.getText().toString().isEmpty() || etDetailId.getText().toString().isEmpty() || etDetailBirthday.getText().toString().isEmpty()){
+            if (etDetailName.getText().toString().isEmpty() || etDetailId.getText().toString().isEmpty() ){
                 Toast.makeText(this,"Vui lòng điền tất cả thông tin",Toast.LENGTH_SHORT).show();
             }
             else {
 
                 MyDbHelper db = new MyDbHelper(this);
                 db.deleteStudent(etDetailId.getText().toString());
-                db.addStudent(new Student("null", etDetailName.getText().toString(), etDetailClass.getText().toString(), etDetailId.getText().toString(), etDetailBirthday.getText().toString()));
+                db.addStudent(new Student(etDetailName.getText().toString(), etDetailId.getText().toString()));
 //                db.updateStudent();
 
                 listFragment.setChangeNotify();
@@ -112,8 +128,6 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.Cl
     public void setOnClickListener(int position) {
         etDetailName.setText(Application.listStudent.get(position).getName());
         etDetailId.setText(Application.listStudent.get(position).getId());
-        etDetailClass.setText(Application.listStudent.get(position).getNameClass());
-        etDetailBirthday.setText(Application.listStudent.get(position).getBirthday());
 
 
         fragmentManager.beginTransaction()

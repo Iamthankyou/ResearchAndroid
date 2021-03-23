@@ -47,6 +47,8 @@ public class List extends Fragment {
 
         myAdapter = new StudentAdapter(this.getActivity(),Application.listStudent);
         recyclerView.setAdapter(myAdapter);
+
+//        searchView.
     }
 
     public void setChangeNotify(){

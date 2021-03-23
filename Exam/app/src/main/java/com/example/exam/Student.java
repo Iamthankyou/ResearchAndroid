@@ -4,12 +4,9 @@ public class Student {
     private String urlAvatar,name,nameClass,id,birthday;
     private boolean isSelected;
 
-    public Student(String urlAvatar, String name, String nameClass, String id, String birthday) {
-        this.urlAvatar = urlAvatar;
+    public Student(String name, String id) {
         this.name = name;
-        this.nameClass = nameClass;
         this.id = id;
-        this.birthday = birthday;
     }
 
     public String getUrlAvatar() {

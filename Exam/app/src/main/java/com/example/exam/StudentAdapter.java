@@ -10,7 +10,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,7 +65,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tvName,tvBirthday,tvClass;
+        TextView tvName,tvId;
         ImageView ivAvatar;
         CheckBox cbDelete;
 
@@ -74,9 +73,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
             super(itemView);
 
             tvName = itemView.findViewById(R.id.tvName);
-            tvBirthday = itemView.findViewById(R.id.tvBirthday);
-            tvClass = itemView.findViewById(R.id.tvClass);
-            ivAvatar = itemView.findViewById(R.id.ivAvatar);
+            tvId = itemView.findViewById(R.id.tvId);
+
             cbDelete = itemView.findViewById(R.id.cbDelete);
 
             itemView.setOnClickListener(v->{
@@ -113,9 +111,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
             }
         });
 
-        holder.tvClass.setText(listStudent.get(position).getNameClass());
         holder.tvName.setText(listStudent.get(position).getName());
-        holder.tvBirthday.setText(listStudent.get(position).getBirthday());
+        holder.tvId.setText(listStudent.get(position).getId());
     }
 
     @Override

@@ -13,35 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number|textPersonName|text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/etAddName" />
-
-    <EditText
-        android:id="@+id/etAddBirthday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etAddId" />
-
-    <EditText
-        android:id="@+id/etAddClass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etAddBirthday" />
 
     <TextView
         android:id="@+id/textView2"
@@ -132,28 +108,6 @@
         app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Ngày sinh:"
-        android:textSize="18dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/etAddBirthday"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Lớp:"
-        android:textSize="18dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/etAddClass"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
-
     <EditText
         android:id="@+id/etAddName"
         android:layout_width="wrap_content"
@@ -172,8 +126,8 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="50dp"
         android:text="Thêm sinh viên"
-        app:layout_constraintEnd_toEndOf="@+id/etAddClass"
+        app:layout_constraintEnd_toEndOf="@+id/etAddId"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/etAddClass" />
+        app:layout_constraintTop_toBottomOf="@+id/etAddId" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,16 @@ public class Application extends android.app.Application {
 
         db = new MyDbHelper(this);
 
-//        db.addStudent(new Student("null","Lê Quang Duy","CNTT1","1","02032000"));
+//        db.addStudent(new Student("Lê Quang Duy","1017"));
+//        db.addStudent(new Student("Lê Quang Duy 1","1018"));
+//        db.addStudent(new Student("Lê Quang Duy 2","1019"));
+//        db.addStudent(new Student("Lê Quang Duy 3","1020"));
+//
+//        db.addStudent(new Student("Phạm Thị Thu Hiền","391017"));
+//        db.addStudent(new Student("Phạm Thị Thu Hiền 1","391018"));
+//        db.addStudent(new Student("Phạm Thị Thu Hiền 2","391010"));
+//        db.addStudent(new Student("Phạm Thị Thu Hiền 3","3923010"));
+
 
         listStudent = db.getAllStudents();
 

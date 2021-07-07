@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity implements PersonAdapter.Ite
         recyclerView = findViewById(R.id.recycleView);
         recyclerView.setHasFixedSize(true);
 
-        //layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(this);
 //        layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        layoutManager = new GridLayoutManager(this,5,GridLayoutManager.VERTICAL,false);
+//        layoutManager = new GridLayoutManager(this,5,GridLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
 
         listPerson = new ArrayList<>();

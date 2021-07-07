@@ -23,9 +23,10 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.Cl
     private Fragment detailFragment,taskbarFragment,addFragment;
     private List listFragment;
     private FragmentManager fragmentManager;
+    
+    @Override
     private Button btnUpdate,btnDelete,btnHomeAdd,btnHomeDelete;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -73,9 +74,9 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.Cl
                         db.deleteStudent(i.getId());
                     }
 
-                    if (toRemove.size()>0){
-                        Application.listStudent.removeAll(toRemove);
+                    Application.listStudent.removeAll(toRemove);
                     }
+                    if (toRemove.size()>0){
                     listFragment.setChangeNotify();
 
                 }

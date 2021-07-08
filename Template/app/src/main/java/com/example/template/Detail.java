@@ -13,7 +13,6 @@ public class Detail extends AppCompatActivity {
     private EditText etDId, etDString, etDDouble;
     private Button btnDUpdate, btnDBack;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

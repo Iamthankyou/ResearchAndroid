@@ -20,7 +20,7 @@ public class Application extends android.app.Application {
 //        db.add(new Table_LeQuangDuy("String", 80.88, 0));
 //        db.add(new Table_LeQuangDuy("String", 80.88, 0));
 //        db.add(new Table_LeQuangDuy("String", 80.88, 0));
-        db.add(new Table_LeQuangDuy("STRING", 80.88, 1));
+//        db.add(new Table_LeQuangDuy("STRING", 8099.88, 1));
 
         list = db.getAll();
     }
@@ -30,8 +30,8 @@ public class Application extends android.app.Application {
         list = db.getAll();
     }
 
-
-
-
+    public static void add(Table_LeQuangDuy aNew){
+        db.add(aNew);
+    }
 }
 

@@ -74,7 +74,7 @@ public class LeQuangDuy_sqlite extends SQLiteOpenHelper {
 
     public ArrayList<Table_LeQuangDuy> getAll() {
         ArrayList<Table_LeQuangDuy>  list = new ArrayList<>();
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY doubleColumn DESC"  ;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);

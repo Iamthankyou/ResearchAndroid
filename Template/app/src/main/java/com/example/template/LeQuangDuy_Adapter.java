@@ -49,13 +49,15 @@ public class LeQuangDuy_Adapter extends RecyclerView.Adapter<LeQuangDuy_Adapter.
             protected FilterResults performFiltering(CharSequence charSequence) {
                 String charString = charSequence.toString();
                 if (charString.isEmpty()) {
-                    filter  = list;
+                    filter = list;
+                    System.out.println("Empty");
                 } else {
                     ArrayList<Table_LeQuangDuy> filteredList = new ArrayList<>();
                     for (Table_LeQuangDuy row : list) {
 
                         if (row.getColumnString().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
+                            System.out.print("OK");
                         }
                     }
 
@@ -69,7 +71,7 @@ public class LeQuangDuy_Adapter extends RecyclerView.Adapter<LeQuangDuy_Adapter.
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                filter = (ArrayList<Table_LeQuangDuy>) filterResults.values;
+                list = (ArrayList<Table_LeQuangDuy>) filterResults.values;
 
                 notifyDataSetChanged();
             }
